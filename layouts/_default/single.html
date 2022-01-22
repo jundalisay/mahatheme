@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+
+  {{ partial "header.html" . }}
+  <body>
+
+  {{ "<!-- Wrapper -->" | safeHTML }}
+    <div id="wrapper">
+
+      {{ partial "nav.html" . }}
+      {{ if .Params.image }}
+        <span class="image main crop"><img src="{{ .Params.image }}" alt="" /></span>
+      {{ end }}
+      {{ "<!-- Main -->" | safeHTML }}
+      <div id="main" class="alt">
+
+        <!-- One -->
+        <section id="one">
+          <div class="inner">
+            <header class="major">
+              <h1 style="color: black;">{{ .Title}}</h1>
+              {{ with .Params.date }}
+                <small>{{ .Format "January 2, 2006" }}</small>
+              {{ end }}               
+            </header>
+
+            {{ if .Params.icon }}
+            <img src="{{ .Params.icon }}" height="50px" alt="{{ .Params.icontext }}">
+            <br>
+            {{ end }}  
+          
+            {{ .Content }}
+          </div>
+        </section>
+
+        {{ partial "back.html" . }}
+
+        {{ "<!-- Disqus Inject -->" | safeHTML }}
+          {{ if .Site.DisqusShortname }}
+            {{ partial "disqus.html" . }}
+          {{ end }}
+      </div>
+        
+        
+      
+      {{ "<!-- Footer -->" | safeHTML}}
+
+      {{ if .Site.Params.Contact.enable }}
+          {{ partial "contact.html" . }}
+      {{ end }}
+              
+      {{ if .Site.Params.footer.enable }}
+          {{ partial "footer.html" . }}
+      {{ end }}
+    </div>
+
+  {{ "<!-- Scripts -->" | safeHTML}}
+    {{ partial "js.html" . }}
+
+  </body>
+</html>

@@ -1,0 +1,73 @@
+{{ "<!-- Contact -->" | safeHTML}}
+<section id="contact">
+  <div class="inner">
+    <section>
+      <h2>Ask about Maharlika!</h2>
+      <p>Feel free to send your comments, suggestions, or queries:</p>
+
+      <form method="post" action="https://formspree.io/f/xdoyvngk">
+      <!-- <form method="post" action="https://formspree.io/.Site.Params.Contact.formEmail"> -->
+        <div class="field half first">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" />
+        </div>
+        <div class="field half">
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email" />
+        </div>
+        <div class="field">
+            <label for="message">Message</label>
+            <textarea name="message" id="message" rows="6"></textarea>
+        </div>
+        <ul class="actions">
+            <li><input type="submit" value="{{ .Site.Params.Contact.buttonSend }}" class="special" /></li>
+            <li><input type="reset" value="{{ .Site.Params.Contact.buttonClear }}" /></li>
+        </ul>
+      </form>
+    </section>
+
+    <section>
+      <br>
+      <br>      
+      <div class="contact-method">
+        <span class="icon alt fa-list"></span>
+        <h4>Latest Articles</h4>
+        {{ range .Site.Params.Latests.Article }}
+          <a href="{{ .link | absURL }}" class="link">{{ .title }}</a>
+          <br>
+        {{ end }}
+      </div>
+
+      <div class="contact-method">
+        <span class="icon alt fa-envelope"></span>
+        {{ range .Site.Params.Contact.email }}
+        <a href="mailto:{{ .email }}">{{ .email }}</a>
+        {{ end }}
+      </div>
+
+      <div class="contact-method">
+        <span class="icon alt fa-facebook"></span>
+        {{ range .Site.Params.Contact.phone }}
+        <span><a href="{{ .phone }}">{{ .phone }}</a></span>
+        {{ end }}
+      </div>
+
+      <div class="contact-method">
+        <span class="icon alt fa-question"></span>
+        {{ range .Site.Params.Contact.faq }}
+        <span><a href="{{ .link }}">{{ .title }}</a></span>
+        {{ end }}
+      </div>
+
+      <div class="contact-method">
+        <span class="icon alt fa-book"></span>
+        {{ range .Site.Params.Contact.book }}
+        <p>{{ .text }}</p>
+        <a href="{{ .link }}">
+          <img src="{{ .image }}" width="200px">
+        </a>
+        {{ end }}
+      </div>
+    </section>
+  </div>
+</section>
